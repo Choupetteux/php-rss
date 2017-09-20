@@ -1,0 +1,15 @@
+<?php
+require_once("webpage.class.php");
+
+$page = new Webpage("Les titres");
+$page->appendCSS(<<<CSS
+body{
+
+}
+CSS
+);
+
+
+$rss = new DOMDocument();
+$rss->load('http://www.bfmtv.com/rss/societe/');
+?>
