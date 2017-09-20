@@ -1,5 +1,5 @@
 <?php
-require_once("webpage.class.php");
+require_once("autoload.inc.php");
 
 $rss = new DOMDocument();
 $rss->load('http://www.bfmtv.com/rss/societe/');
@@ -15,7 +15,9 @@ body{
 CSS
 );
 
-for($i = 1; $i < $rssF->length; $i++){
+$page->appendContent('<h2>Les nouvelles de ' .$rssF->item(1)->nodeValue . '</h2> <br>');
+for($i = 2; $i < $rssF->length; $i++){
+
 	$page->appendContent($rssF->item($i)->nodeValue . '<br> <br>');
 }
 
