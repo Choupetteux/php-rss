@@ -48,13 +48,24 @@ class ElementRSS {
      * @param $node le noeud DOM source
      */
     public function __construct($titre_flux, DOMelement $node) {
+        $this->_flux = $titre_flux;
+        $this->_titre = self::valeurElement($node, 'title');
+        $this->_url = self::valeurElement($node, 'link');
+        try{
+            $this->_date = strtotime(self::valeurElement($node, 'pubDate')); 
+        }
+        catch(Exception $e){
+
+        }
     }
+
 
     /** Accès au nom du flux
      *
      * @return string le nom du flux
      */
     public function flux() {
+        return $this->_flux;
     }
 
     /** Accès au titre de l'élément
@@ -62,6 +73,7 @@ class ElementRSS {
      * @return string le titre de l'élément
      */
     public function titre() {
+        return $this->_titre;
     }
 
     /** Accès à l'URL de l'élément
@@ -69,6 +81,7 @@ class ElementRSS {
      * @return string l'URL de l'élément
      */
     public function url() {
+        return $this->_url;
     }
 
     /** Accès à la date de publication de l'élément sous forme de timestamp
@@ -76,6 +89,7 @@ class ElementRSS {
      * @return int le timestamp de l'élément
      */
     public function timestamp() {
+        return $this->_date;
     }
 
     /** Accès à la date de publication de l'élément sous forme de texte
@@ -83,6 +97,7 @@ class ElementRSS {
      * @return string la date de l'élément sous forme de date
      */
     public function date() {
+        return strftime('%d/%m/%y %H:%M', $this->_date); 
     }
 
     /** Comparaison alphabétique des noms des flux de deux éléments
@@ -92,6 +107,15 @@ class ElementRSS {
      * @return int 0, -1 ou 1
      */
     public static function compareFlux(self $n1, self $n2) {
+        if($n1->_flux < $n2->_flux){
+            return -1;
+        }
+        elseif($n1->_flux > $n2->_flux){
+            return 1;
+        }
+        elseif($n1->_flux == $n2->_flux){
+            return 0;
+        }
     }
 
     /** Comparaison alphabétique des titres de deux éléments
@@ -101,6 +125,15 @@ class ElementRSS {
      * @return int 0, -1 ou 1
      */
     public static function compareTitre(self $n1, self $n2) {
+        if($n1->_titre < $n2->_titre){
+            return -1;
+        }
+        elseif($n1->_titre > $n2->_titre){
+            return 1;
+        }
+        elseif($n1->_titre == $n2->_titre){
+            return 0;
+        }
     }
 
     /** Comparaison chronologique inverse des dates de deux éléments
@@ -110,5 +143,16 @@ class ElementRSS {
      * @return int 0, -1 ou 1
      */
     public static function compareDate(self $n1, self $n2) {
+        if(mktime($n1->_date) > mktime($n2->_date)){
+            return -1;
+        }
+        elseif(mktime($n1->_date) < mktime($n2->_date)){
+            return 1;
+        }
+        elseif(mktime($n1->_date) == mktime($n2->_date)){
+            return 0;
+        }
     }
+
+
 }

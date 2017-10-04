@@ -21,6 +21,10 @@ for($i = 2; $i < $rssF->length; $i++){
 	$page->appendContent($rssF->item($i)->nodeValue . '<br> <br>');
 }
 
-echo $page->toHTML();
 
+echo $page->toHTML();
+$rss2 = new DOMDocument();
+        $rss2->load('http://www.bfmtv.com/rss/societe/');
+        $flux = $rss2->getElementsByTagName("channel")->item(0)->getElementsByTagName("title");
+var_dump($rss2);
 ?>

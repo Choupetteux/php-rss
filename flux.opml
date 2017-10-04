@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.1">
+  <head>
+    <title>Actualités du monde informatique</title>
+    <dateCreated>Thu, 01 Oct 2009 12:59:58 GMT</dateCreated>
+    <dateModified>Sun, 04 Oct 2009 23:41:32 GMT</dateModified>
+    <ownerName>Jérôme Cutrona</ownerName>
+    <ownerEmail>jerome.cutrona@univ-reims.fr</ownerEmail>
+  </head>
+  <body>
+    <outline text="Actualité Tom's Hardware FR" xmlUrl="http://www.tomshardware.fr/feeds/rss2/news.xml"/>
+    <outline text="HardWare.fr" xmlUrl="http://feeds.feedburner.com/hardware/fr/news"/>
+    <outline text="Clubic.com" xmlUrl="http://www.clubic.com/xml/news.xml"/>
+    <outline text="Tom's Guide FR" xmlUrl="http://www.tomsguide.com/fr/feeds/rss2/tom-s-guide-fr,20-0.xml"/>
+    <outline text="Generation Nouvelles Technologies" xmlUrl="http://www.generation-nt.com/export/rss.xml"/>
+    <outline text="TT-Hardware.com" xmlUrl="http://www.tt-hardware.com/rss.php"/>
+    <outline text="Le comptoir du hardware" xmlUrl="http://www.comptoir-hardware.com/home.xml"/>
+    <outline text="Akihabaranews.com" xmlUrl="http://feeds.feedburner.com/Akihabaranews_fr"/>
+    <outline text="Le Journal du Geek" xmlUrl="http://feeds2.feedburner.com/LeJournalduGeek"/>
+  </body>
+</opml>

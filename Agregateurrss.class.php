@@ -20,6 +20,12 @@ class AgregateurRSS {
      */
     public function ajouterFlux($url) {
         // Explorer tous les éléments <item> afin de construire un ElementRSS pour chacun d'eux
+        $rss = new DOMDocument();
+        $rss->load($url);
+        foreach($rss->getElementsByTagName("item") as $item){
+            $this->_elements[] = new Elementrss($rss->getElementsByTagName("title")->item(0)->firstChild->nodeValue, $item);
+        }
+
     }
 
     /**
@@ -28,7 +34,20 @@ class AgregateurRSS {
      * @return string le code HTML
      */
     public function toHTML() {
+        $html = "";
+        foreach($this->_elements as $e){
+           $html .= <<<HTML
+                    <div class="RSS">
+                        <span class="date"> {$e->date()} </span>
+                        <span class="flux"> {$e->flux()} </span>
+                        <span class="lien"> <a href="{$e->url()}"> {$e->titre()} </a></span>
+                    </div>\n
+HTML;
+        }
+
+            return $html;
     }
+
 
     /**
      * Tri des éléments par nom de flux source
@@ -36,6 +55,7 @@ class AgregateurRSS {
      * @return void
      */
     public function triFlux() {
+        return uasort($this->_elements, array('Elementrss', 'compareFlux'));
     }
 
     /**
@@ -44,6 +64,7 @@ class AgregateurRSS {
      * @return void
      */
     public function triTitre() {
+        return uasort($this->_elements, array('Elementrss', 'compareTitre'));
     }
 
     /**
@@ -52,6 +73,7 @@ class AgregateurRSS {
      * @return void
      */
     public function triDate() {
+        return uasort($this->_elements, array('Elementrss', 'compareDate'));
     }
 
     /**
